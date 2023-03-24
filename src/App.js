@@ -7,7 +7,8 @@ import AlbumFreature from './features/Album';
 
 import ToDoFeature from './features/Todo';
 
-import { React } from 'react';
+import { React , useEffect } from 'react';
+import categoryApi from './api/categoryApi';
 
 
 
@@ -16,6 +17,18 @@ import { React } from 'react';
 
 
 function App() {
+
+  useEffect(() => {
+        const fetchCategories = async () => {
+            const params = {
+              _limit : 2,
+            } ;
+
+          const categoryList = await categoryApi.getAll(params) ;
+          console.log(categoryList) ;
+        }
+        fetchCategories() ;
+  }, []);
 
   return (
     <div className='App' >
